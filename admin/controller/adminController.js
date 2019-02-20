@@ -39,3 +39,37 @@ catch(err){
  }))();
  
 }
+
+module.exports.assignDriver = (req, res) =>{
+  let data = {admin_id} =req.decode;
+  data.booking_id = req.body.booking_id;
+  (Promise.coroutine(function* () {
+  try{
+    result = yield admins.assignService(data);
+    console.log(result);
+    if(result != undefined )
+      {data.driver_id = result.driver_id ;
+      Response.message(res,200, data,'driver assigned to a booking  ');
+    }
+    else
+      throw new error;
+      }
+  catch(err){
+    Response.message(res, 400,{},'error occured during booking')
+  }
+}))();
+}
+
+module.exports.getBooking = async (req, res) => {
+  let data = {admin_id} =req.decode;
+  (Promise.coroutine(function* () {
+   try{
+     result = yield admins.getBookingService(data);
+     Response.message(res,200, result,'booking detail by admin token');
+   }
+   catch(err)
+   {
+    Response.message(res, 400,{},err)
+   }
+  }))();
+}

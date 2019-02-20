@@ -1,0 +1,537 @@
+{ 
+"swagger": "2.0", 
+"info": { 
+"version": "1.0.0", 
+"description": "jugnoo replica", 
+"title": "MY JUGNOO APPLICATION" 
+}, 
+"host": "localhost:3000", 
+"basePath": "/", 
+"schemes": [ 
+"http" 
+], 
+"paths": { 
+"/admin/login": { 
+"post": { 
+"tags": [ 
+"admin" 
+], 
+"description": "Login an admin", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "email of admin", 
+"name": "email", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "Password", 
+"name": "password", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/admin/seeAllBookings": { 
+"get": { 
+"tags": [ 
+"admin" 
+], 
+"description": "get all bookings", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/admin/seeAllBookings/assigned": { 
+"get": { 
+"tags": [ 
+"admin" 
+], 
+"description": "see all assigned bookings", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/admin/seeAllBookings/unassigned": { 
+"get": { 
+"tags": [ 
+"admin" 
+], 
+"description": "see all unassigned bookings", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/admin/assignDriver": { 
+"post": { 
+"tags": [ 
+"admin" 
+], 
+"description": "assign driver to a ride", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+}, 
+{ 
+"type": "string", 
+"description": "booking id", 
+"name": "booking_id", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/booking/createBooking": { 
+"post": { 
+"tags": [ 
+"booking" 
+], 
+"description": "create booking for a customer", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+}, 
+{ 
+"type": "float", 
+"description": "latitude points from Pickup", 
+"name": "from_latitude", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "longitude points from Pickup", 
+"name": "from_longitude", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "latitude points from Destination", 
+"name": "to_latitude", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "longitude points from Destination", 
+"name": "to_longitude", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully signed up." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/booking/getBooking": { 
+"get": { 
+"tags": [ 
+"booking" 
+], 
+"description": "shows current booking of the customer", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully signed up." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/booking/getAllBookings": { 
+"get": { 
+"tags": [ 
+"booking" 
+], 
+"description": "showing all the booking of the customer", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully signed up." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/driver/signUp": { 
+"post": { 
+"tags": [ 
+"driver" 
+], 
+"description": "Register a driver", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "first name of driver", 
+"name": "first_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "middle name of driver (if any)", 
+"name": "middle_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "last name of driver", 
+"name": "last_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "Password", 
+"name": "password", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": " Confirm Password", 
+"name": "confirmPassword", 
+"in": "formData" 
+}, 
+{ 
+"type": "email", 
+"description": "email of driver", 
+"name": "email", 
+"in": "formData" 
+}, 
+{ 
+"type": "number", 
+"description": "contact number of driver", 
+"name": "phone_number", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "car name", 
+"name": "car_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "car number", 
+"name": "car_number", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "latitude points of driver default address", 
+"name": "latitude", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "longitude points of driver default address",
+"name": "longitude", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully signed up." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/driver/login": { 
+"post": { 
+"tags": [ 
+"driver" 
+], 
+"description": "Login a customer", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "email of a driver", 
+"name": "email", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "Password", 
+"name": "password", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/driver/seeBooking": { 
+"get": { 
+"tags": [ 
+"driver" 
+], 
+"description": "see current booking", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/driver/seeAllBookings": { 
+"get": { 
+"tags": [ 
+"driver" 
+], 
+"description": "see all the bookings", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/driver/completeBooking": { 
+"post": { 
+"tags": [ 
+"driver" 
+], 
+"description": "complete a ride", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "access_token", 
+"in": "header" 
+}, 
+{ 
+"type": "number", 
+"description": "ride fare", 
+"name": "ride_fare", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully log in." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/user/signUp": { 
+"post": { 
+"tags": [ 
+"user" 
+], 
+"description": "Register a customer", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "first name of user", 
+"name": "first_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "middle name of user (if any)", 
+"name": "middle_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "last name of user", 
+"name": "last_name", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "Password", 
+"name": "password", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": " Confirm Password", 
+"name": "confirmPassword", 
+"in": "formData" 
+}, 
+{ 
+"type": "number", 
+"description": "contact number of user", 
+"name": "phone_number", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "email of a user", 
+"name": "email", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "latitude points of user default address", 
+"name": "latitude", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "longitude points of user default address", 
+"name": "longitude", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully signed up." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+}, 
+"/user/login": { 
+"post": { 
+"tags": [ 
+"user" 
+], 
+"description": "Login a customer", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "email of a user", 
+"name": "email", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "Password", 
+"name": "password", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully signed up." 
+}, 
+"400": { 
+"description": "Error in registering" 
+} 
+} 
+} 
+} 
+} 
+}

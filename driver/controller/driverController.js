@@ -71,3 +71,39 @@ catch(err){
  }))();
  
 }
+//0 pending
+//1 assigned
+//2 on way
+//3 completed
+module.exports.changeStatus = (req, res) => {
+  let data = {driver_id} = req.decode;
+  data.booking_id = req.body.booking_id;
+  data.status = req.body.status;
+  (Promise.coroutine(function* () {
+   try{
+    let result = yield drivers.statusService(data);
+    Response.message(res,200, data,' status successfully changed');
+   }
+   catch(err){
+  Response.message(res, 400,{},'error occured during change of status');
+}
+
+  }))();
+
+}
+
+module.exports.getBookings = (req, res) => {
+let data = {driver_id} = req.decode;
+(Promise.coroutine(function* () {
+ try {
+  let result = yield drivers.getBookingService(data);
+  if(result[0] == undefined )
+    throw new error;
+  Response.message(res,200, result,' history of booking ');
+ }
+ catch(err){
+  Response.message(res, 400,{},'No history of booking ');
+}
+}))();
+
+}
