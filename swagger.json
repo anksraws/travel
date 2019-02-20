@@ -5,19 +5,25 @@
 "description": "jugnoo replica", 
 "title": "MY JUGNOO APPLICATION" 
 }, 
-"host": "localhost:3000", 
+"host": "localhost:4000", 
 "basePath": "/", 
 "schemes": [ 
 "http" 
 ], 
 "paths": { 
-"/admin/login": { 
+"/admins/login": { 
 "post": { 
 "tags": [ 
-"admin" 
+"admins" 
 ], 
 "description": "Login an admin", 
 "parameters": [ 
+{ 
+"type": "string", 
+"description": "name of admin", 
+"name": "name", 
+"in": "formData" 
+}, 	
 { 
 "type": "string", 
 "description": "email of admin", 
@@ -41,18 +47,18 @@
 } 
 } 
 }, 
-"/admin/seeAllBookings": { 
+"/admins/getBooking": { 
 "get": { 
 "tags": [ 
-"admin" 
+"admins" 
 ], 
 "description": "get all bookings", 
 "parameters": [ 
 { 
 "type": "string", 
 "description": "token", 
-"name": "access_token", 
-"in": "header" 
+"name": "X-auth", 
+"in": "header"
 } 
 ], 
 "responses": { 
@@ -65,65 +71,17 @@
 } 
 } 
 }, 
-"/admin/seeAllBookings/assigned": { 
-"get": { 
-"tags": [ 
-"admin" 
-], 
-"description": "see all assigned bookings", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/admin/seeAllBookings/unassigned": { 
-"get": { 
-"tags": [ 
-"admin" 
-], 
-"description": "see all unassigned bookings", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/admin/assignDriver": { 
+"/admins/assignDriver": { 
 "post": { 
 "tags": [ 
-"admin" 
+"admins" 
 ], 
 "description": "assign driver to a ride", 
 "parameters": [ 
 { 
 "type": "string", 
 "description": "token", 
-"name": "access_token", 
+"name": "X-auth", 
 "in": "header" 
 }, 
 { 
@@ -142,126 +100,18 @@
 } 
 } 
 } 
-}, 
-"/booking/createBooking": { 
+},  
+"/drivers/signup": { 
 "post": { 
 "tags": [ 
-"booking" 
-], 
-"description": "create booking for a customer", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-}, 
-{ 
-"type": "float", 
-"description": "latitude points from Pickup", 
-"name": "from_latitude", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "longitude points from Pickup", 
-"name": "from_longitude", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "latitude points from Destination", 
-"name": "to_latitude", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "longitude points from Destination", 
-"name": "to_longitude", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully signed up." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/booking/getBooking": { 
-"get": { 
-"tags": [ 
-"booking" 
-], 
-"description": "shows current booking of the customer", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully signed up." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/booking/getAllBookings": { 
-"get": { 
-"tags": [ 
-"booking" 
-], 
-"description": "showing all the booking of the customer", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully signed up." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/driver/signUp": { 
-"post": { 
-"tags": [ 
-"driver" 
+"drivers" 
 ], 
 "description": "Register a driver", 
 "parameters": [ 
 { 
 "type": "string", 
-"description": "first name of driver", 
-"name": "first_name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "middle name of driver (if any)", 
-"name": "middle_name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "last name of driver", 
-"name": "last_name", 
+"description": "name", 
+"name": "name", 
 "in": "formData" 
 }, 
 { 
@@ -271,45 +121,21 @@
 "in": "formData" 
 }, 
 { 
-"type": "string", 
-"description": " Confirm Password", 
-"name": "confirmPassword", 
-"in": "formData" 
-}, 
-{ 
 "type": "email", 
 "description": "email of driver", 
 "name": "email", 
 "in": "formData" 
 }, 
 { 
-"type": "number", 
-"description": "contact number of driver", 
-"name": "phone_number", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "car name", 
-"name": "car_name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "car number", 
-"name": "car_number", 
-"in": "formData" 
-}, 
-{ 
 "type": "float", 
 "description": "latitude points of driver default address", 
-"name": "latitude", 
+"name": "driver_lat", 
 "in": "formData" 
 }, 
 { 
 "type": "float", 
 "description": "longitude points of driver default address",
-"name": "longitude", 
+"name": "driver_long", 
 "in": "formData" 
 } 
 ], 
@@ -323,13 +149,55 @@
 } 
 } 
 }, 
-"/driver/login": { 
+"/drivers/changeStatus": { 
 "post": { 
 "tags": [ 
-"driver" 
+"drivers" 
+], 
+"description": "change the booking status", 
+"parameters": [ 
+{ 
+"type": "string", 
+"description": "token", 
+"name": "X-auth", 
+"in": "header" 
+},
+{ 
+"type": "status", 
+"description": "status update", 
+"name": "status", 
+"in": "formData" 
+}, 
+{ 
+"type": "string", 
+"description": "booking id", 
+"name": "booking_id", 
+"in": "formData" 
+} 
+], 
+"responses": { 
+"201": { 
+"description": "successfully status updated." 
+}, 
+"400": { 
+"description": "Error in updating" 
+} 
+} 
+} 
+}, 
+"/drivers/login": { 
+"post": { 
+"tags": [ 
+"drivers" 
 ], 
 "description": "Login a customer", 
 "parameters": [ 
+{ 
+"type": "string", 
+"description": "name of a driver", 
+"name": "name", 
+"in": "formData" 
+},
 { 
 "type": "string", 
 "description": "email of a driver", 
@@ -353,17 +221,17 @@
 } 
 } 
 }, 
-"/driver/seeBooking": { 
+"/drivers/getBookings": { 
 "get": { 
 "tags": [ 
-"driver" 
+"drivers" 
 ], 
-"description": "see current booking", 
+"description": "see booking", 
 "parameters": [ 
 { 
 "type": "string", 
 "description": "token", 
-"name": "access_token", 
+"name": "X-auth", 
 "in": "header" 
 } 
 ], 
@@ -377,101 +245,95 @@
 } 
 } 
 }, 
-"/driver/seeAllBookings": { 
-"get": { 
-"tags": [ 
-"driver" 
-], 
-"description": "see all the bookings", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/driver/completeBooking": { 
+"/users/createBooking": { 
 "post": { 
 "tags": [ 
-"driver" 
+"users" 
 ], 
-"description": "complete a ride", 
+"description": "create booking", 
 "parameters": [ 
 { 
-"type": "string", 
-"description": "token", 
-"name": "access_token", 
-"in": "header" 
-}, 
-{ 
-"type": "number", 
-"description": "ride fare", 
-"name": "ride_fare", 
+"type": "float", 
+"description": "pickup latitude for user", 
+"name": "pick_lat", 
 "in": "formData" 
-} 
+}, 
+{ 
+"type": "float", 
+"description": "pickup longitude for user", 
+"name": "pick_long", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "drop latitude for user",
+"name": "drop_lat", 
+"in": "formData" 
+}, 
+{ 
+"type": "float", 
+"description": "drop longitude for user", 
+"name": "drop_long", 
+"in": "formData" 
+},
+{
+"type" : "string",
+"description" : "token for authentication",
+"name" : "X-auth",
+"in": "header"
+}
 ], 
 "responses": { 
 "201": { 
-"description": "successfully log in." 
+"description": "successfully booking made ." 
 }, 
 "400": { 
-"description": "Error in registering" 
+"description": "Error in making booking " 
 } 
 } 
 } 
 }, 
-"/user/signUp": { 
+"/users/bookingDetail": { 
+"get": { 
+"tags": [ 
+"users" 
+], 
+"description": "printing detail of booking", 
+"parameters": [  
+{
+"type" : "string",
+"description" : "token for authentication",
+"name" : "X-auth",
+"in": "header"
+}
+], 
+"responses": { 
+"201": { 
+"description": "successfully showing detail ." 
+}, 
+"400": { 
+"description": "Error in showing detail " 
+} 
+} 
+} 
+}, 
+"/users/signup": { 
 "post": { 
 "tags": [ 
-"user" 
+"users" 
 ], 
 "description": "Register a customer", 
 "parameters": [ 
 { 
 "type": "string", 
-"description": "first name of user", 
-"name": "first_name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "middle name of user (if any)", 
-"name": "middle_name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "last name of user", 
-"name": "last_name", 
+"description": "name of user", 
+"name": "name", 
 "in": "formData" 
 }, 
 { 
 "type": "string", 
 "description": "Password", 
 "name": "password", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": " Confirm Password", 
-"name": "confirmPassword", 
-"in": "formData" 
-}, 
-{ 
-"type": "number", 
-"description": "contact number of user", 
-"name": "phone_number", 
 "in": "formData" 
 }, 
 { 
@@ -483,13 +345,13 @@
 { 
 "type": "float", 
 "description": "latitude points of user default address", 
-"name": "latitude", 
+"name": "user_lat", 
 "in": "formData" 
 }, 
 { 
 "type": "float", 
 "description": "longitude points of user default address", 
-"name": "longitude", 
+"name": "user_long", 
 "in": "formData" 
 } 
 ], 
@@ -503,10 +365,10 @@
 } 
 } 
 }, 
-"/user/login": { 
+"/users/login": { 
 "post": { 
 "tags": [ 
-"user" 
+"users" 
 ], 
 "description": "Login a customer", 
 "parameters": [ 

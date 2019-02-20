@@ -98,8 +98,10 @@ module.exports.booking = (req,res) => {
 
 module.exports.bookingDetail = (req,res) => {
   let data ={
-    customer_id : req.decode.user_id,
+    customer_id : req.decode.user_id
   };
+
+  //console.log(customer_id);
 (Promise.coroutine(function* () {
   try{
     result = yield users.detailService(data);

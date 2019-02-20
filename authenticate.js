@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken')
 
 const authenticate = (req, res, next) => {
-  var token = req.body.token;
-  console.log(token);
+  //var token = req.body.token;
+  var token = req.header('X-auth');
   jwt.verify(token,'abc123', function(err, decoded) {
   if(err) {
     res.status(401).send({
@@ -21,8 +21,8 @@ const authenticate = (req, res, next) => {
 };
 
 const authenticateAdmin = (req, res, next) => {
-  var token = req.body.token;
- 
+  var token = req.header('X-auth');
+ console.log(token);
   jwt.verify(token,'abc345', function(err, decoded) {
   if(err) {
     res.status(401).send({
@@ -42,7 +42,7 @@ const authenticateAdmin = (req, res, next) => {
 
 const authenticateDriver = (req, res, next) => {
 
-var token = req.body.token;
+var token = req.header('X-auth');
 
   jwt.verify(token, 'abc234', function(err, decoded) {
   if(err) {
