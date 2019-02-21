@@ -1,3 +1,5 @@
+//MAIN FILE THAT STARTS THE SERVER
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -5,7 +7,7 @@ const drivers = require('./driver/router/driverRouter.js')
 const users = require('./user/router/userRouter.js');
 const admins = require('./admin/router/adminRouter.js');
 const dbo = require('./dbconnection.js');
-const swaggerUi = require('swagger-ui-express'); 
+const swaggerUi = require('swagger-ui-express');
 
 const swaggerDocument = require('./swagger.json');
 
@@ -19,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/users', users)
-app.use('/drivers', drivers )
+app.use('/drivers', drivers)
 app.use('/admins', admins)
 
 app.listen(4000, () => {

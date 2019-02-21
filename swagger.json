@@ -1,399 +1,385 @@
-{ 
-"swagger": "2.0", 
-"info": { 
-"version": "1.0.0", 
-"description": "jugnoo replica", 
-"title": "MY JUGNOO APPLICATION" 
-}, 
-"host": "localhost:4000", 
-"basePath": "/", 
-"schemes": [ 
-"http" 
-], 
-"paths": { 
-"/admins/login": { 
-"post": { 
-"tags": [ 
-"admins" 
-], 
-"description": "Login an admin", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "name of admin", 
-"name": "name", 
-"in": "formData" 
-}, 	
-{ 
-"type": "string", 
-"description": "email of admin", 
-"name": "email", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "Password", 
-"name": "password", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/admins/getBooking": { 
-"get": { 
-"tags": [ 
-"admins" 
-], 
-"description": "get all bookings", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "X-auth", 
-"in": "header"
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/admins/assignDriver": { 
-"post": { 
-"tags": [ 
-"admins" 
-], 
-"description": "assign driver to a ride", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "X-auth", 
-"in": "header" 
-}, 
-{ 
-"type": "string", 
-"description": "booking id", 
-"name": "booking_id", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-},  
-"/drivers/signup": { 
-"post": { 
-"tags": [ 
-"drivers" 
-], 
-"description": "Register a driver", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "name", 
-"name": "name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "Password", 
-"name": "password", 
-"in": "formData" 
-}, 
-{ 
-"type": "email", 
-"description": "email of driver", 
-"name": "email", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "latitude points of driver default address", 
-"name": "driver_lat", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "longitude points of driver default address",
-"name": "driver_long", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully signed up." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/drivers/changeStatus": { 
-"post": { 
-"tags": [ 
-"drivers" 
-], 
-"description": "change the booking status", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "X-auth", 
-"in": "header" 
-},
-{ 
-"type": "status", 
-"description": "status update", 
-"name": "status", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "booking id", 
-"name": "booking_id", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully status updated." 
-}, 
-"400": { 
-"description": "Error in updating" 
-} 
-} 
-} 
-}, 
-"/drivers/login": { 
-"post": { 
-"tags": [ 
-"drivers" 
-], 
-"description": "Login a customer", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "name of a driver", 
-"name": "name", 
-"in": "formData" 
-},
-{ 
-"type": "string", 
-"description": "email of a driver", 
-"name": "email", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "Password", 
-"name": "password", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/drivers/getBookings": { 
-"get": { 
-"tags": [ 
-"drivers" 
-], 
-"description": "see booking", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "token", 
-"name": "X-auth", 
-"in": "header" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully log in." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/users/createBooking": { 
-"post": { 
-"tags": [ 
-"users" 
-], 
-"description": "create booking", 
-"parameters": [ 
-{ 
-"type": "float", 
-"description": "pickup latitude for user", 
-"name": "pick_lat", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "pickup longitude for user", 
-"name": "pick_long", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "drop latitude for user",
-"name": "drop_lat", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "drop longitude for user", 
-"name": "drop_long", 
-"in": "formData" 
-},
 {
-"type" : "string",
-"description" : "token for authentication",
-"name" : "X-auth",
-"in": "header"
-}
-], 
-"responses": { 
-"201": { 
-"description": "successfully booking made ." 
-}, 
-"400": { 
-"description": "Error in making booking " 
-} 
-} 
-} 
-}, 
-"/users/bookingDetail": { 
-"get": { 
-"tags": [ 
-"users" 
-], 
-"description": "printing detail of booking", 
-"parameters": [  
-{
-"type" : "string",
-"description" : "token for authentication",
-"name" : "X-auth",
-"in": "header"
-}
-], 
-"responses": { 
-"201": { 
-"description": "successfully showing detail ." 
-}, 
-"400": { 
-"description": "Error in showing detail " 
-} 
-} 
-} 
-}, 
-"/users/signup": { 
-"post": { 
-"tags": [ 
-"users" 
-], 
-"description": "Register a customer", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "name of user", 
-"name": "name", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "Password", 
-"name": "password", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "email of a user", 
-"name": "email", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "latitude points of user default address", 
-"name": "user_lat", 
-"in": "formData" 
-}, 
-{ 
-"type": "float", 
-"description": "longitude points of user default address", 
-"name": "user_long", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully signed up." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-}, 
-"/users/login": { 
-"post": { 
-"tags": [ 
-"users" 
-], 
-"description": "Login a customer", 
-"parameters": [ 
-{ 
-"type": "string", 
-"description": "email of a user", 
-"name": "email", 
-"in": "formData" 
-}, 
-{ 
-"type": "string", 
-"description": "Password", 
-"name": "password", 
-"in": "formData" 
-} 
-], 
-"responses": { 
-"201": { 
-"description": "successfully signed up." 
-}, 
-"400": { 
-"description": "Error in registering" 
-} 
-} 
-} 
-} 
-} 
+ "swagger": "2.0",
+ "info": {
+  "version": "1.0.0",
+  "description": "GHUMOO",
+  "title": "MY TRAVEL APPLICATION"
+ },
+ "host": "localhost:4000",
+ "basePath": "/",
+ "schemes": [
+  "http"
+ ],
+ "paths": {
+  "/admins/login": {
+   "post": {
+    "tags": [
+     "admins"
+    ],
+    "description": "Login an admin",
+    "parameters": [{
+      "type": "string",
+      "description": "name of admin",
+      "name": "name",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "email of admin",
+      "name": "email",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "Password",
+      "name": "password",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully log in."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/admins/getBooking": {
+   "get": {
+    "tags": [
+     "admins"
+    ],
+    "description": "get all bookings",
+    "parameters": [{
+     "type": "string",
+     "description": "token",
+     "name": "X-auth",
+     "in": "header"
+    }],
+    "responses": {
+     "201": {
+      "description": "successfully log in."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/admins/assignDriver": {
+   "post": {
+    "tags": [
+     "admins"
+    ],
+    "description": "assign driver to a ride",
+    "parameters": [{
+      "type": "string",
+      "description": "token",
+      "name": "X-auth",
+      "in": "header"
+     },
+     {
+      "type": "string",
+      "description": "booking id",
+      "name": "booking_id",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully log in."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/drivers/signup": {
+   "post": {
+    "tags": [
+     "drivers"
+    ],
+    "description": "Register a driver",
+    "parameters": [{
+      "type": "string",
+      "description": "name",
+      "name": "name",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "Password",
+      "name": "password",
+      "in": "formData"
+     },
+     {
+      "type": "email",
+      "description": "email of driver",
+      "name": "email",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "latitude points of driver default address",
+      "name": "driver_lat",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "longitude points of driver default address",
+      "name": "driver_long",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully signed up."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/drivers/changeStatus": {
+   "post": {
+    "tags": [
+     "drivers"
+    ],
+    "description": "change the booking status",
+    "parameters": [{
+      "type": "string",
+      "description": "token",
+      "name": "X-auth",
+      "in": "header"
+     },
+     {
+      "type": "status",
+      "description": "status update",
+      "name": "status",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "booking id",
+      "name": "booking_id",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully status updated."
+     },
+     "400": {
+      "description": "Error in updating"
+     }
+    }
+   }
+  },
+  "/drivers/login": {
+   "post": {
+    "tags": [
+     "drivers"
+    ],
+    "description": "Login a customer",
+    "parameters": [{
+      "type": "string",
+      "description": "name of a driver",
+      "name": "name",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "email of a driver",
+      "name": "email",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "Password",
+      "name": "password",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully log in."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/drivers/getBookings": {
+   "get": {
+    "tags": [
+     "drivers"
+    ],
+    "description": "see booking",
+    "parameters": [{
+     "type": "string",
+     "description": "token",
+     "name": "X-auth",
+     "in": "header"
+    }],
+    "responses": {
+     "201": {
+      "description": "successfully log in."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/users/createBooking": {
+   "post": {
+    "tags": [
+     "users"
+    ],
+    "description": "create booking",
+    "parameters": [{
+      "type": "float",
+      "description": "pickup latitude for user",
+      "name": "pick_lat",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "pickup longitude for user",
+      "name": "pick_long",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "drop latitude for user",
+      "name": "drop_lat",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "drop longitude for user",
+      "name": "drop_long",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "token for authentication",
+      "name": "X-auth",
+      "in": "header"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully booking made ."
+     },
+     "400": {
+      "description": "Error in making booking "
+     }
+    }
+   }
+  },
+  "/users/bookingDetail": {
+   "get": {
+    "tags": [
+     "users"
+    ],
+    "description": "printing detail of booking",
+    "parameters": [{
+     "type": "string",
+     "description": "token for authentication",
+     "name": "X-auth",
+     "in": "header"
+    }],
+    "responses": {
+     "201": {
+      "description": "successfully showing detail ."
+     },
+     "400": {
+      "description": "Error in showing detail "
+     }
+    }
+   }
+  },
+  "/users/signup": {
+   "post": {
+    "tags": [
+     "users"
+    ],
+    "description": "Register a customer",
+    "parameters": [{
+      "type": "string",
+      "description": "name of user",
+      "name": "name",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "Password",
+      "name": "password",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "email of a user",
+      "name": "email",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "latitude points of user default address",
+      "name": "user_lat",
+      "in": "formData"
+     },
+     {
+      "type": "float",
+      "description": "longitude points of user default address",
+      "name": "user_long",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully signed up."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  },
+  "/users/login": {
+   "post": {
+    "tags": [
+     "users"
+    ],
+    "description": "Login a customer",
+    "parameters": [{
+      "type": "string",
+      "description": "email of a user",
+      "name": "email",
+      "in": "formData"
+     },
+     {
+      "type": "string",
+      "description": "Password",
+      "name": "password",
+      "in": "formData"
+     }
+    ],
+    "responses": {
+     "201": {
+      "description": "successfully signed up."
+     },
+     "400": {
+      "description": "Error in registering"
+     }
+    }
+   }
+  }
+ }
 }

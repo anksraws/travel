@@ -1,3 +1,4 @@
+// FILE THAT DOES VALIDATION OF NAME, EMAIL AND PASSWORD PARAMETERS FOR USER
 const Joi = require('joi');
 
 const validator = (req, res, next) => {
