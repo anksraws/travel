@@ -1,3 +1,5 @@
+// FILE THAT DOES VALIDATION OF NAME, EMAIL AND PASSWORD PARAMETERS FOR DRIVER
+
 const Joi = require('joi');
 
 const validator = (req, res, next) => {

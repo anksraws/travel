@@ -1,5 +1,7 @@
+// FILE THAT CREATES MYSQL CONNECTION
+
 const mysql = require('mysql');
-const util = require('util'); 
+const util = require('util');
 const con = mysql.createConnection({
  host: 'localhost',
  user: 'root',
